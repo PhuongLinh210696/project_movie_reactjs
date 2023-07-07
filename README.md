@@ -6,13 +6,15 @@ Các thư mục cần tạo:
 - services: nơi lưu trữ các logic về gọi dữ liệu
 - util: nơi chứa các logic hỗ trợ
 - assets: nơi lưu các image, svg, video
+- template: tạo ra các layout xài chung
+
 ....
 
 Các thư viện cần cại đặt
-- react-router-dom
+- react-router-dom: npm i react-router-dom
 - axios
-- redux-toolkit
-- ant.design
-- tailwindcss.com
-- sass
+- redux-toolkit: npm install @reduxjs/toolkit, npm install react-redux
+- ant.design: npm install antd --save
+- tailwindcss.com: npm install -D tailwindcss,npx tailwindcss init (https://tailwindcss.com/docs/guides/create-react-app)
+- sass: npm i sass sass-loader
 
