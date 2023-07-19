@@ -17,4 +17,9 @@ Các thư viện cần cại đặt
 - ant.design: npm install antd --save
 - tailwindcss.com: npm install -D tailwindcss,npx tailwindcss init (https://tailwindcss.com/docs/guides/create-react-app)
 - sass: npm i sass sass-loader
-
+- animation lotties: npm install --save react-lottie --force
+- formik: npm install formik
+- yup validation: npm i yup --f
+- redux-thunk: 
+API: 
+https://movienew.cybersoft.edu.vn/swagger/index.html?fbclid=IwAR1sa4_4ZHToTNNErxSxSUc5D1wbcCX1GLVyDqu4mCcSoTpyZTTJrCGxiYg
