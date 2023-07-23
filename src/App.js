@@ -1,5 +1,6 @@
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import DetailMovie from "./Components/DetailMovie/DetailMovie";
+import MovieBooking from "./Pages/MovieBooking/MovieBooking";
 import HomePage from "./Pages/HomePage/HomePage";
 import Loading from "./Pages/Loading/Loading";
 import Login from "./Pages/Login/Login";
@@ -9,6 +10,7 @@ import Register from "./Pages/Register/Register";
 import UserManagement from "./Pages/UserManagement/UserManagement";
 import AdminTemplate from "./Templates/AdminTemplate";
 import UserTemplate from "./Templates/UserTemplate";
+
 
 function App() {
   return (
@@ -21,6 +23,9 @@ function App() {
           <Route path="/register" element={<Register/>}/>
           <Route path="/detail">
             <Route path=":maPhim" element={<DetailMovie/>}/>
+          </Route>
+          <Route path='/booking'>
+            <Route path=':maLichChieu' element={<MovieBooking />} />
           </Route>
           
         </Route>
