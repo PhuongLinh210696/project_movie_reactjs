@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { theaterSer } from "../../Services/theaterService";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -53,6 +53,7 @@ const TabDetaiMovie = () => {
                             </p>
                             <p>Thời lượng: {newItem.thoiLuong} phút</p>
                             <p>Giá vé: {newItem.giaVe} VND</p>
+                            <NavLink to={`/booking/${newItem.maLichChieu}`}>Booking here</NavLink>
                           </div>
                         );
                       })}

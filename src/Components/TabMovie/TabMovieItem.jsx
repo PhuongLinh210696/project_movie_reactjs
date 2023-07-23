@@ -23,9 +23,14 @@ const TabMovieItem = ({ maHeThongRap }) => {
     return showtime[0]?.lstCumRap?.map((item, index) => {
       return {
         label: (
+          // <div className="text-left w-60">
+          //   <p>{item.tenCumRap}</p>
+          //   <p className="truncate ... ">{item.diaChi}</p>
+          // </div>
           <div className="text-left w-60">
-            <p>{item.tenCumRap}</p>
-            <p className="truncate ... ">{item.diaChi}</p>
+            <h4 className='text-green-700 overflow-hidden font-medium leading-5 text-ellipsis'>{item.tenCumRap}</h4>
+            <h6 className="truncate ... text-gray-400 overflow-hidden font-normal text-ellipsis">{item.diaChi}</h6>
+            <a className='text-orange-600 text-xs lowercase' href='/'>[Chi tiết]</a>
           </div>
         ),
         key: index,
@@ -36,19 +41,39 @@ const TabMovieItem = ({ maHeThongRap }) => {
               if (item.dangChieu) {
                 return (
                   <div className="flex" key={index}>
-                    <div className="w-2/12">
-                      <img src={item.hinhAnh} alt="" />
+                    <div className="w-2/12 flex p-5 relative">
+                      <img src={item.hinhAnh} alt="" className='w-32 h-52'/>
                     </div>
-                    <div className="w-10/12">
-                        <h3>{item.tenPhim}</h3>
+                    <div className="w-8/12 py-0 px-5 max-w-xl">
+                    <h3 className='my-5 leading-6 text-lg font-medium -tracking-wide m-0'>
+                        <span className='text-white inline-block py-0 w-8 bg-orange-500 text-center mr-2 '>C18</span>
+                        {item.tenPhim}
+                      </h3>
                         <div className="flex flex-wrap">
                         {item.lstLichChieuTheoPhim.slice(0,5).map((newItem,index) => { 
-                            return(
-                                <p key={index} className="w-1/2 border border-black rounded-md py-2 px-4 mb-5">{moment(newItem.ngayChieuGioChieu).format("DD/MM/YYYY - h:mm:ss")}</p>
-                            )
-                         })}
+                            return (
+                              <p
+                                key={index}
+                                // className="w-1/2 border border-black rounded-md py-2 px-4 mb-5"
+                                className="decoration-gray-500 w-2/5 border-solid border-2 rounded-md mb-4 mr-4 p-2 bg-slate-200"
+                              >
+                                <div className='flex items-center justify-center'>
+                                  <p className='text-green-700 text-sm font-medium'>
+                                    {moment(newItem.ngayChieuGioChieu).format(
+                                      'DD-MM-YYYY'
+                                    )}
+                                  </p>
+                                  <p className='text-base font-normal leading-6'> ~ </p>
+                                  <h3 className='text-orange-700 text-base font-medium leading-4 spaing'>
+                                    {moment(newItem.ngayChieuGioChieu).format(
+                                      'hh:mm'
+                                    )}
+                                  </h3>
+                                </div>
+                              </p>
+                            );
+                          })}
                         </div>
-                        
                     </div>
                   </div>
                 );
