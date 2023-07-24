@@ -27,7 +27,7 @@ const Booking = (props) => {
             setShowNotification(true);
             const notificationTimeout = setTimeout(() => {
                 setShowNotification(false);
-                navigate('/login');
+                navigate('/login', { replace: true });
             }, 1500);
             return () => clearTimeout(notificationTimeout);
         }
