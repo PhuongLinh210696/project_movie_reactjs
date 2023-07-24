@@ -1,16 +1,24 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import style from './Booking.module.css';
 import style2 from './Booking.css';
 import { CloseOutlined, UserOutlined, CheckOutlined } from '@ant-design/icons';
 import { datVeServ } from '../../Services/datVeService';
 import { datVeSlice } from '../../Redux/slices/datVeSlice';
 
-const Booking = () => {
+const Booking = (props) => {
     const { hoTen } = useSelector(state => state.nguoiDung);
     const { danhSachGheDangDat } = useSelector(state => state.datVe);
     const [isBookingSuccess, setIsBookingSuccess] = useState(false);
+    const navigate = useNavigate();
+    useEffect(() => {
+        // Check if there is no user logged in
+        if (!hoTen || !hoTen.taiKhoan) {
+            // Redirect to the login page
+            navigate('/login');
+        }
+    }, [hoTen, navigate]);
 
     const [selectedGhe, setSelectedGhe] = useState([]);
     const [movie, setMovie] = useState({});
@@ -28,9 +36,10 @@ const Booking = () => {
     const updateSelectedSeatsAfterBooking = () => {
         setSelectedGhe([]);
         dispatch(datVeSlice.actions.setDanhSachGhe([]));
-      };
+    };
 
     const handleBooking = () => {
+
         const thongTinDatVe = {
             maLichChieu: params.maLichChieu,
             danhSachVe: danhSachGheDangDat,
