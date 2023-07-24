@@ -12,11 +12,24 @@ const Booking = (props) => {
     const { danhSachGheDangDat } = useSelector(state => state.datVe);
     const [isBookingSuccess, setIsBookingSuccess] = useState(false);
     const navigate = useNavigate();
+    const [showNotification, setShowNotification] = useState(false);
+    const Notification = ({ message }) => {
+        return (
+          <div className="notification-container">
+            <div className="notification-content">
+              {message}
+            </div>
+          </div>
+        );
+      };
     useEffect(() => {
-        // Check if there is no user logged in
-        if (!hoTen || !hoTen.taiKhoan) {
-            // Redirect to the login page
-            navigate('/login');
+        if (!hoTen?.taiKhoan) {
+            setShowNotification(true);
+            const notificationTimeout = setTimeout(() => {
+                setShowNotification(false);
+                navigate('/login');
+            }, 1500);
+            return () => clearTimeout(notificationTimeout);
         }
     }, [hoTen, navigate]);
 
@@ -24,7 +37,6 @@ const Booking = (props) => {
     const [movie, setMovie] = useState({});
     const [ghe, setGhe] = useState([]);
     const params = useParams();
-
     const dispatch = useDispatch();
 
     const getSelectedSeats = () => {
@@ -88,7 +100,7 @@ const Booking = (props) => {
             let classGheDangDat = '';
             let indexGheDD = selectedGhe.findIndex(gheDD => gheDD.maGhe === gheItem.maGhe);
             let classGheDaDuocDat = '';
-            if (hoTen.taiKhoan === ghe.taiKhoanNguoiDat) {
+            if (hoTen?.taiKhoan === ghe.taiKhoanNguoiDat) {
                 classGheDaDuocDat = 'gheDaDuocDat';
 
             }
@@ -128,6 +140,7 @@ const Booking = (props) => {
 
     return (
         <div className='min-h-screen mt-5'>
+            {showNotification && <Notification message="Bạn cần đăng nhập để tiếp tục đặt vé." />}
             <div className='grid grid-cols-12'>
                 <div className='col-span-9'>
                     <div className='flex flex-col items-center mt-5'>
